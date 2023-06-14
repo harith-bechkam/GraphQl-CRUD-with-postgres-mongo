@@ -2,14 +2,15 @@ const { gql } = require('apollo-server')
 
 module.exports = gql`
 type Dress{
-    _id: String
+    id: Int
     name: String
     type: String
     size: String
     location: String
     currdate: String
-    createdAt: String
-    updatedAt: String
+    is_deleted:Boolean
+    created_on: String
+    updated_on: String
 }
 
 input DressInput{
@@ -35,8 +36,8 @@ type Query{
 
 type Mutation{
     createdress(dressinput: DressInput): Dress!
-    updatedress(id:ID!, dressinput: DressInput): Boolean
-    deletedress(id:ID!): Boolean
+    updatedress(id:ID!, dressinput: DressInput): Int
+    deletedress(id:ID!): Int
 }
 
 type Subscription{

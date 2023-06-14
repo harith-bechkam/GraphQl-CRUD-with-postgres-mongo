@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Dress = require('../model')
 const { UserInputError, ApolloError, AuthenticationError } = require('apollo-server')
 const { skip, combineResolvers } = require('graphql-resolvers')
@@ -49,13 +50,21 @@ module.exports = {
 
             }
         },
-        async getparticulardress(parent, { id }) {
-            let data = await Dress.findById(id)
-            return data
+        async getparticulardress(parent, args) {
+
+            let data = await Dress.findAll({
+                where: {
+                    id: {
+                        [Op.eq]: args.id
+                    },
+                },
+                raw: true
+            })
+            return data[0]
         },
 
         async getalldresses() {
-            let data = await Dress.find()
+            let data = await Dress.findAll()
             return data
         }
 
@@ -63,24 +72,24 @@ module.exports = {
     Mutation: {
 
         async createdress(parent, { dressinput: { name, type, size, location, currdate } }) {
-            const createdress = new Dress({ name, type, size, location, currdate })
-            const res = await createdress.save()
-            console.log(res._doc, "---")
-            return {
-                ...res._doc
-            }
+            const createdress = await Dress.create({ name, type, size, location, currdate })
+            return createdress
         },
 
         async updatedress(parent, { id, dressinput: { name, type, size, location, currdate } }) {
-            const updatedress = await Dress.updateOne({ _id: id }, { $set: { name, type, size, location, currdate } })
+            const updatedress = await Dress.update({ name, type, size, location, currdate }, {
+                where: {
+                    id
+                }
+            })
             console.log(updatedress, "----")
-            return updatedress.modifiedCount
+            return updatedress[0]
         },
 
-        async deletedress(parent, { id }) {
-            const deletedress = await Dress.deleteOne({ _id: id })
+        async deletedress(parent, args) {
+            const deletedress = await Dress.destroy({ where: { id: args.id } })
             console.log(deletedress, "----")
-            return deletedress.deletedCount
+            return deletedress
         }
     },
     Subscription: {

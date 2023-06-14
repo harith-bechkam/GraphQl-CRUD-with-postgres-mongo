@@ -17,7 +17,8 @@
     "graphql": "^16.6.0",
     "graphql-resolvers": "^0.4.2",
     "graphql-subscriptions": "^2.0.0",
-    "mongoose": "^7.2.4",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "pg": "^8.11.0",
+    "sequelize": "^6.32.0"
   }
 }

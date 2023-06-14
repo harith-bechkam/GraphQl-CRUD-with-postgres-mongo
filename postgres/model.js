@@ -1,31 +1,45 @@
-const mongoose = require("mongoose");
+const Sequelize = require('sequelize');
+const { dressdb } = require('./dbconfig')
 
-const dressSchema = new mongoose.Schema(
-    {
-        name: {
-            type: String,
-            required: true
-        },
-        type: {
-            type: String,
-            required: true,
-        },
-        size: {
-            type: String,
-            required: true,
-        },
-        location: {
-            type: String,
-            required: true
-        },
-        currdate: {
-            type: Date,
-            default: Date.now,
-        }
+
+const dress = dressdb.define('dresstable', {
+    name: {
+        type: Sequelize.STRING,
     },
-    { timestamps: true }
-);
+    type: {
+        type: Sequelize.STRING
+    },
+    size: {
+        type: Sequelize.STRING
+    },
+    location: {
+        type: Sequelize.STRING
+    },
+    currdate: {
+        type: Sequelize.DATE
+    },
+    is_deleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
+    created_on: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },
+    modified_on: {
+        type: 'TIMESTAMP',
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    },
 
-const dress = mongoose.model("dress", dressSchema);
+}, { freezeTableName: true, timestamps: false })
 
-module.exports = dress
+// cost_catagory.associate = (models) => {
+//     cost_catagory.belongsTo(models.company,{foreignKey: 'company_id'});
+// };
+// cost_catagory.belongsTo(company, {foreignKey: {
+//     name: 'company_id'}
+//   })
+
+module.exports = dress;
