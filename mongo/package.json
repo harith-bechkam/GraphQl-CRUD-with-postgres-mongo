@@ -1,0 +1,23 @@
+{
+  "name": "basic-crud-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-resolvers": "^1.4.2",
+    "apollo-server": "^3.12.0",
+    "dotenv": "^16.1.4",
+    "graphql": "^16.6.0",
+    "graphql-resolvers": "^0.4.2",
+    "graphql-subscriptions": "^2.0.0",
+    "mongoose": "^7.2.4",
+    "nodemon": "^2.0.22"
+  }
+}
