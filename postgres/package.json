@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "pm2start": "pm2 start index.js && npx pm2 log",
+    "format": "prettier --write .",
+    "generate": "npx sequelize-auto -c configfile -l esm --cm p --cf c --sg true",
+    "prepare":"husky install"
   },
   "keywords": [],
   "author": "",
@@ -20,5 +24,8 @@
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
     "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
   }
 }
