@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const Dress = require("../model");
+const Dress = require("../models/dresstable");
 const {
   UserInputError,
   ApolloError,

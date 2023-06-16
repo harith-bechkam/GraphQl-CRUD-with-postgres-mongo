@@ -8,7 +8,7 @@
     "start": "nodemon index.js",
     "pm2start": "pm2 start index.js && npx pm2 log",
     "format": "prettier --write .",
-    "generate": "npx sequelize-auto -c configfile -l esm --cm p --cf c --sg true",
+    "sequelize-auto": "npx sequelize-auto -c configfile -l esm --cm p --cf c --sg true",
     "prepare":"husky install"
   },
   "keywords": [],

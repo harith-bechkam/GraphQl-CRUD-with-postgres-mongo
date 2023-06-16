@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { dressdb } = require("./dbconfig");
+const { dressdb } = require("../dbconfig");
 
 const dress = dressdb.define(
   "dresstable",
