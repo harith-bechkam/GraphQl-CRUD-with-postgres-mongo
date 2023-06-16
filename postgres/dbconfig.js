@@ -1,10 +1,10 @@
 const Sequelize = require("sequelize");
 require("dotenv").config();
-
+let {development} = require('./config/config.json')
 const dressdb = new Sequelize(
-  process.env.DB_name,
-  process.env.postgres_username,
-  process.env.postgres_pass,
+  development.database,
+  development.username,
+  development.password,
   {
     dialect: "postgres",
     host: "localhost",
