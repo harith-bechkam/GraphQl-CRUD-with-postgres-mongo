@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "pm2start": "pm2 start index.js --watch && npx pm2 log",
+    "pm2start": "pm2 start index.js && npx pm2 log",
     "format": "prettier --write .",
     "generate-models": "npx sequelize-auto -h localhost -d dress -u postgres -x asd -p 5432  --dialect postgres -o ./models -l esm --cm p --cf c --sg true",
     "prepare": "husky install"
