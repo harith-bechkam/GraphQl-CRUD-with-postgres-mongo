@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { useQuery, gql } from "@apollo/client";
+
+const GET_LOCATIONS = gql`
+  query Getalldresses {
+    getalldresses {
+      id
+      name
+      type
+      size
+      location
+      currdate
+      is_deleted
+      created_on
+      updated_on
+    }
+  }
+`;
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cont, setCont] = useState("");
+  const { loading, error, data } = useQuery(GET_LOCATIONS);
+
+  function clickit(e) {
+    e.preventDefault();
+
+    if (loading) setCont("Loading...");
+    if (error) setCont(error.message);
+    setCont(JSON.stringify(data));
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <button onClick={(e) => clickit(e)}>click</button>
+      <p>{JSON.stringify(cont)}</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
