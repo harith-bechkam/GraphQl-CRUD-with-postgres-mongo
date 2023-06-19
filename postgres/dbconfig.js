@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 require("dotenv").config();
-let {development} = require('./config/config.json')
+let { development } = require("./config/config.json");
 const dressdb = new Sequelize(
   development.database,
   development.username,
