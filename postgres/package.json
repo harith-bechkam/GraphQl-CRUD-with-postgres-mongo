@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "pm2start": "pm2 start index.js && npx pm2 log",
+    "pm2start": "pm2 start index.js --watch && npx pm2 log",
     "format": "prettier --write .",
-    "sequelize-auto": "npx sequelize-auto -c configfile -l esm --cm p --cf c --sg true",
-    "prepare":"husky install"
+    "generate-models": "npx sequelize-auto -h localhost -d dress -u postgres -x asd -p 5432  --dialect postgres -o ./models -l esm --cm p --cf c --sg true",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +23,8 @@
     "graphql-subscriptions": "^2.0.0",
     "nodemon": "^2.0.22",
     "pg": "^8.11.0",
-    "sequelize": "^6.32.0"
+    "sequelize": "^6.32.0",
+    "sequelize-auto": "^0.8.8"
   },
   "devDependencies": {
     "husky": "^8.0.3"
